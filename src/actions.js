@@ -21,16 +21,27 @@ function request() {
 }
 
 function success(address) {
+  const data = {
+    prefecture: address[1].long_name,
+    city: address[2].long_name,
+    street: address.slice(3, -1).reduce((p, c) => p.long_name + c.long_name, {long_name: ''})
+  };
   return {
     type: SUCCESS,
-    data: address
+    data: data
   };
 }
 
 function failure() {
+  const data = {
+    prefecture: 'エラー',
+    city: 'エラー',
+    street: 'エラー'
+  };
   return {
     type: FAILURE,
-    data: '送信エラー：しばらくしてからやり直してください'
+    data: data,
+    error: '送信エラー：しばらくしてからやり直してください'
   };
 }
 

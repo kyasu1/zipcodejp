@@ -2,6 +2,6 @@ import createAll from './createAll';
 
 export const {
   actionTypes,
-  action,
+  actions,
   reducer
 } = createAll();
